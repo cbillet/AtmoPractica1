@@ -55,10 +55,10 @@ crs_latlon = ccrs.PlateCarree()
 ax.set_extent([LONMIN, LONMAX, LATMIN, LATMAX], crs=crs_latlon)
 
 #Graficamos
-im=ax.contourf(lons, lats, fr[0,:,:], clevs, cmap=plt.get_cmap("jet"), extend='both', transform=crs_latlon)
+im=ax.contourf(lons, lats, fr[0,:,:], clevs, cmap=plt.get_cmap("Reds"), extend='both', transform=crs_latlon)
 
 #Agregamos barra de colores
-plt.colorbar(im, fraction=0.052, pad=0.04, shrink=0.8, aspect=8)
+plt.colorbar(im, fraction=0.052, pad=0.08, shrink=0.8, aspect=20, orientation='horizontal')
 
 #Características del mapa
 ax.add_feature(cartopy.feature.LAND, facecolor='#d9d9d9')
@@ -84,11 +84,12 @@ plt.savefig('Forzante.jpg')
 
 #%% Graficamos U
 
+
 plt.imshow(ucomp[49,:,:]) , plt.colorbar() #hago un grafico pra visualizar min y max
 
 cmin = 0
-cmax = 1.2
-ncont = 7 #me queda cada 1000
+cmax = 10
+ncont = 5 #me queda cada 1000
 clevs = np.linspace(cmin, cmax, ncont)
 
 #Creamos figura
@@ -103,10 +104,12 @@ crs_latlon = ccrs.PlateCarree()
 ax.set_extent([LONMIN, LONMAX, LATMIN, LATMAX], crs=crs_latlon)
 
 #Graficamos
-im=ax.contourf(lons, lats, ucomp[49,:,:], clevs, cmap=plt.get_cmap("jet"), extend='both', transform=crs_latlon)
+im=ax.contourf(lons, lats, ucomp[49,:,:], clevs, cmap=plt.get_cmap("Reds"), extend='both', transform=crs_latlon)
 
-#Agregamos barra de colores
-plt.colorbar(im, fraction=0.052, pad=0.04, shrink=0.8, aspect=8)
+#Agregamos barra de colores\divider = make_axes_locatable(ax)
+
+plt.colorbar(im, fraction=0.052, pad=0.08, shrink=0.8, aspect=10, orientation ='horizontal', label='m s$^{-1}$' )
+
 
 #Características del mapa
 ax.add_feature(cartopy.feature.LAND, facecolor='#d9d9d9')
@@ -137,13 +140,14 @@ from DerY import derivy
 
 gvor = derivy(vor[49,:,:],156543.75)
 
+
 #Graficamos gradiente de vorticidad
 
 plt.imshow(gvor) , plt.colorbar() #hago un grafico pra visualizar min y max
 
-cmin = -6e-13
-cmax = 6e-13
-ncont = 7 #me queda cada 2
+cmin = -4
+cmax = 4
+ncont = 9 #me queda cada 2
 clevs = np.linspace(cmin, cmax, ncont)
 
 #Creamos figura
@@ -158,10 +162,10 @@ crs_latlon = ccrs.PlateCarree()
 ax.set_extent([LONMIN, LONMAX, LATMIN, LATMAX], crs=crs_latlon)
 
 #Graficamos
-im=ax.contourf(lons, lats, gvor, clevs, cmap=plt.get_cmap("jet"), extend='both', transform=crs_latlon)
+im=ax.contourf(lons, lats, gvor/1e-12, clevs, cmap=plt.get_cmap("coolwarm"), extend='both', transform=crs_latlon)
 
 #Agregamos barra de colores
-plt.colorbar(im, fraction=0.052, pad=0.04, shrink=0.8, aspect=8)
+plt.colorbar(im, fraction=0.052, pad=0.08, orientation='horizontal', shrink=1, aspect=14, label='x 10$^{-12}$')
 
 #Características del mapa
 ax.add_feature(cartopy.feature.LAND, facecolor='#d9d9d9')
@@ -213,7 +217,7 @@ plt.imshow(Lean) , plt.colorbar() #hago un grafico pra visualizar min y max
 
 cmin = 0 
 cmax = 10
-ncont = 10 #me queda cada 1
+ncont = 6 #me queda cada 1
 clevs = np.linspace(cmin, cmax, ncont)
 
 #Creamos figura
@@ -228,10 +232,10 @@ crs_latlon = ccrs.PlateCarree()
 ax.set_extent([LONMIN, LONMAX, LATMIN, LATMAX], crs=crs_latlon)
 
 #Graficamos
-im=ax.contourf(lons, lats, Ksp , clevs, cmap=plt.get_cmap("jet"), extend='both', transform=crs_latlon)
+im=ax.contourf(lons, lats, Ksp, clevs, cmap=plt.get_cmap("Reds"), extend='both', transform=crs_latlon)
 
 #Agregamos barra de colores
-plt.colorbar(im, fraction=0.052, pad=0.04, shrink=0.8, aspect=8)
+plt.colorbar(im, fraction=0.052, pad=0.08, shrink=0.8, aspect=16, orientation='horizontal')
 
 #Características del mapa
 ax.add_feature(cartopy.feature.LAND, facecolor='#d9d9d9')
@@ -276,7 +280,7 @@ plt.colorbar() #hago un grafico pra visualizar min y max
 
 cmin = 40000
 cmax = 110000
-ncont = 7 #me queda cada 1000
+ncont = 8 #me queda cada 1000
 clevs = np.linspace(cmin, cmax, ncont)
 
 #Creamos figura
@@ -291,10 +295,10 @@ crs_latlon = ccrs.PlateCarree()
 ax.set_extent([LONMIN, LONMAX, LATMIN, LATMAX], crs=crs_latlon)
 
 #Graficamos
-im=ax.contourf(lons, lats, fr[49,:,:], clevs, cmap=plt.get_cmap("jet"), extend='both', transform=crs_latlon)
+im=ax.contourf(lons, lats, fr[49,:,:], clevs, cmap=plt.get_cmap("Reds"), extend='both', transform=crs_latlon)
 
 #Agregamos barra de colores
-plt.colorbar(im, fraction=0.052, pad=0.04, shrink=0.8, aspect=8)
+plt.colorbar(im, fraction=0.052, pad=0.08, shrink=1, aspect=30, orientation='horizontal')
 
 #Características del mapa
 ax.add_feature(cartopy.feature.LAND, facecolor='#d9d9d9')
@@ -321,9 +325,9 @@ plt.savefig('Forzante.jpg')
 
 plt.imshow(ucomp[49,:,:]) , plt.colorbar() #hago un grafico pra visualizar min y max
 
-cmin = -10
+cmin = -25
 cmax = 25
-ncont = 7 #me queda cada 1000
+ncont = 11 #me queda cada 1000
 clevs = np.linspace(cmin, cmax, ncont)
 
 #Creamos figura
@@ -338,10 +342,10 @@ crs_latlon = ccrs.PlateCarree()
 ax.set_extent([LONMIN, LONMAX, LATMIN, LATMAX], crs=crs_latlon)
 
 #Graficamos
-im=ax.contourf(lons, lats, ucomp[49,:,:], clevs, cmap=plt.get_cmap("jet"), extend='both', transform=crs_latlon)
+im=ax.contourf(lons, lats, ucomp[49,:,:], clevs, cmap=plt.get_cmap("RdBu"), extend='both', transform=crs_latlon)
 
 #Agregamos barra de colores
-plt.colorbar(im, fraction=0.052, pad=0.04, shrink=0.8, aspect=8)
+plt.colorbar(im, fraction=0.052, pad=0.08, shrink=0.8, aspect=20, orientation='horizontal', label='m s$^{-1}$')
 
 #Características del mapa
 ax.add_feature(cartopy.feature.LAND, facecolor='#d9d9d9')
@@ -376,8 +380,8 @@ gvor = derivy(vor[49,:,:],156543.75)
 
 plt.imshow(gvor) , plt.colorbar() #hago un grafico pra visualizar min y max
 
-cmin = -6e-12
-cmax = 6e-12
+cmin = -12
+cmax = 12
 ncont = 7 #me queda cada 2
 clevs = np.linspace(cmin, cmax, ncont)
 
@@ -393,10 +397,10 @@ crs_latlon = ccrs.PlateCarree()
 ax.set_extent([LONMIN, LONMAX, LATMIN, LATMAX], crs=crs_latlon)
 
 #Graficamos
-im=ax.contourf(lons, lats, gvor, clevs, cmap=plt.get_cmap("jet"), extend='both', transform=crs_latlon)
+im=ax.contourf(lons, lats, gvor/1e-12, clevs, cmap=plt.get_cmap("RdBu"), extend='both', transform=crs_latlon)
 
 #Agregamos barra de colores
-plt.colorbar(im, fraction=0.052, pad=0.04, shrink=0.8, aspect=8)
+plt.colorbar(im, fraction=0.052, pad=0.08, shrink=0.8, aspect=16, orientation='horizontal',label='x 10$^{-12}$')
 
 #Características del mapa
 ax.add_feature(cartopy.feature.LAND, facecolor='#d9d9d9')
@@ -437,7 +441,7 @@ plt.imshow(Ksp) , plt.colorbar() #hago un grafico pra visualizar min y max
 
 cmin = 0 
 cmax = 20
-ncont = 10 #me queda cada 1
+ncont = 11 #me queda cada 1
 clevs = np.linspace(cmin, cmax, ncont)
 
 #Creamos figura
@@ -452,10 +456,10 @@ crs_latlon = ccrs.PlateCarree()
 ax.set_extent([LONMIN, LONMAX, LATMIN, LATMAX], crs=crs_latlon)
 
 #Graficamos
-im=ax.contourf(lons, lats, Ksp , clevs, cmap=plt.get_cmap("jet"), extend='both', transform=crs_latlon)
+im=ax.contourf(lons, lats, Ksp , clevs, cmap=plt.get_cmap("Reds"), extend='both', transform=crs_latlon)
 
 #Agregamos barra de colores
-plt.colorbar(im, fraction=0.052, pad=0.04, shrink=0.8, aspect=8)
+plt.colorbar(im, fraction=0.052, pad=0.08, shrink=0.8, aspect=16, orientation='horizontal')
 
 #Características del mapa
 ax.add_feature(cartopy.feature.LAND, facecolor='#d9d9d9')
